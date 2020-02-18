@@ -6,7 +6,8 @@ This script uses weathermap API (https://openweathermap.org/current) to retrieve
   
   #Requirements
   
-  python3 with below modules (you can run pip3 install <modulename> to install them)
+  python3 with below modules (you can run pip3 install <modulename> to get these)
+  
   requests, configparser, sys
   
   Need an api key from the weathermap site and put it in weather.cfg file
