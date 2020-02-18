@@ -13,4 +13,4 @@ This script uses weathermap API (https://openweathermap.org/current) to retrieve
   
   #usage
   
-  ./weathermap <city name> OR python3 weathermap <city name>
+  ./weathermap "<city name>" OR python3 weathermap "<city name>"
