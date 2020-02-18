@@ -15,8 +15,9 @@ def main():
     else:
         city = sys.argv[1]
     config = configparser.RawConfigParser()
-    #provide the full path to config file below	
-    config.read('weather.cfg')
+    #provide the full path to config file, which is at the same directory as script
+    config_file = sys.path[0] + '/weather.cfg'
+    config.read(config_file)
     #put the appropriate key in the config file
     api_key = config.get('default', 'key')
     base_url = "http://api.openweathermap.org/data/2.5/weather?"
@@ -27,15 +28,15 @@ def main():
     # example response
     # {'coord': {'lon': -118.24, 'lat': 34.05}, 'weather': [{'id': 800, 'main': 'Clear', 'description': 'clear sky', 'icon': '01d'}], 'base': 'stations', 'main': {'temp': 291.64, 'feels_like': 287.01, 'temp_min': 287.59, 'temp_max': 295.93, 'pressure': 1012, 'humidity': 37}, 'visibility': 14484, 'wind': {'speed': 4.6, 'deg': 270}, 'clouds': {'all': 1}, 'dt': 1581986989, 'sys': {'type': 1, 'id': 3578, 'country': 'US', 'sunrise': 1581950171, 'sunset': 1581989885}, 'timezone': -28800, 'id': 5368361, 'name': 'Los Angeles', 'cod': 200}
 
-    if result_json['cod'] != 200:
-        if result_json['cod'] == 404:
-            print('city not found, Enter a valid city name')
-            exit()
-        print(f'error occured, status code {result_json["cod"]}')
+    if result_json['cod'] == '404':
+       print('city not found, Enter a valid city name')
+       exit()
+    elif result_json['cod'] != 200:	
+       print(f'error occured, status code {result_json["cod"]}')
     else:
-        # we have the temparature details in above output at key main
-        result = result_json['main']
-        print(f' {city} current temperature is {result["temp"]} K')
+       # we have the temparature details in above output at key main
+       result = result_json['main']
+       print(f' {city} current temperature is {result["temp"]} K')
 
 
 if __name__ == "__main__":
